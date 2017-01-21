@@ -10,8 +10,8 @@ class RandomButton extends Component {
 
   render() {
     return(
-      <div onClick = { this.props.handleButtonClick } >
-        Randomize!
+      <div className="button" onClick = { this.props.handleButtonClick } >
+        Beer Me! <i className="fa fa-beer" aria-hidden="true"></i>
       </div>
     )
   }

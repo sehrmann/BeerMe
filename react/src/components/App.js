@@ -9,8 +9,10 @@ class App extends Component {
 
   render() {
     return(
-      < Beer
-      />
+      <div className="row">
+        < Beer
+        />
+      </div>
     )
   }
 }

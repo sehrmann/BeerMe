@@ -45,23 +45,41 @@ class Beer extends Component {
   }
 
   render() {
-    let beer, beerName, beerDesc, beerLabel, brewLabel;
+    let beer, beerName, beerDesc, beerLabel, brewer, abv, og, ibu, style, serving;
 
     if (this.state.numBeers) {
       beer = this.state.beers[this.state.selectedBeerIndex].beer
       beerLabel = (beer.labels ? <img src= { beer.labels.large } /> : <p>No Image Available</p>)
-      brewLabel = (beer.breweries[0].images ? <img src= { beer.breweries[0].images.large } /> : <p>No Image Available</p>)
-      beerName = <p> { beer.name } </p>;
+      beerName = <h3> { beer.name } - { beer.breweries[0].name } </h3>;
       beerDesc = <p> { beer.description } </p>;
+      abv = (beer.abv ? <li> ABV: { beer.abv } </li> : null)
+      og = (beer.originalGravity ? <li> Original Gravity: { beer.originalGravity } </li> : null)
+      ibu = (beer.ibu ? <li> IBUs: { beer.ibu } </li> : null)
+      style = (beer.style ? <h4> { beer.style.name } </h4> : null)
+      if (beer.servingTemperatureDisplay && beer.glass) {
+        serving = <h4> Serve { beer.servingTemperatureDisplay } in a { beer.glass.name } </h4>
+      } else if (!beer.servingTemperatureDisplay && beer.glass) {
+        serving = <h4> Serve in a { beer.glass.name } </h4>
+      } else if (beer.servingTemperatureDisplay && !beer.glass) {
+        serving = <h4> Serve { beer.servingTemperatureDisplay }</h4>
+      } else {
+        serving = null
+      }
     }
     return(
-      <div>
+      <div className="small-12 columns callout primary center">
         <div>
-          { brewLabel }
           { beerLabel }
           { beerName }
+          { style }
+          { serving }
           { beerDesc }
         </div>
+        <ul>
+          { abv }
+          { og }
+          { ibu }
+        </ul>
         < RandomButton
           handleButtonClick = { this.handleButtonClick }
         />
