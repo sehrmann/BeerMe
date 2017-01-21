@@ -50,7 +50,7 @@ class Beer extends Component {
     if (this.state.numBeers) {
       beer = this.state.beers[this.state.selectedBeerIndex].beer
       beerLabel = (beer.labels ? <img src= { beer.labels.large } /> : <p>No Image Available</p>)
-      beerName = <h3> { beer.name } - { beer.breweries[0].name } </h3>;
+      beerName = <h2> { beer.name } - { beer.breweries[0].name } </h2>;
       beerDesc = <p> { beer.description } </p>;
       abv = (beer.abv ? <li> ABV: { beer.abv } </li> : null)
       og = (beer.originalGravity ? <li> Original Gravity: { beer.originalGravity } </li> : null)
